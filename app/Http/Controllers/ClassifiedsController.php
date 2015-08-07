@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassifiedRequest;
 use App\Classified, App\Category;
 use Carbon\Carbon;
+use Auth;
 
 class ClassifiedsController extends Controller
 {
@@ -19,7 +20,8 @@ class ClassifiedsController extends Controller
      */
     public function index()
     {
-        //
+        $classifieds = Classified::with('category', 'category.parent')->ownedBy(Auth::user()->id)->recent()->paginate(10);
+        return view('pages.classifieds.index')->with(compact('classifieds'));
     }
 
     /**
@@ -55,6 +57,7 @@ class ClassifiedsController extends Controller
             'description'
         ));
 
+        $classified->user_id = Auth::user()->id;
         $classified->expires_at = Carbon::now()->addDays(30);
         $classified->is_approved = 1;
         $classified->save();

@@ -18,9 +18,26 @@ class Classified extends Model implements StaplerableInterface
             'styles' => [
                 'medium' => '800x600#',
                 'thumb' => '64x64#'
-            ]
+            ],
+            'default_url' => asset('images/placeholder.jpg')
         ]);
 
         parent::__construct($attributes);
-    }	
+    }
+
+    public function category() {
+    	return $this->belongsTo(Category::class);
+    }
+
+    public function scopeOwnedBy($query, $userId) {
+    	return $query->where('user_id', $userId);
+    }
+
+    public function scopeRecent($query) {
+    	return $query->orderBy('updated_at', 'DESC');
+    }
+
+    public function getCategoryNameAttribute() {
+    	return $this->category->parent->name.' > '.$this->category->name;
+    }
 }

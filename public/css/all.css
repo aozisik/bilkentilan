@@ -371,4 +371,8 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
     color: #468847;
     text-align: left;
  }
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
 /*# sourceMappingURL=all.css.map */
