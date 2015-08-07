@@ -13,7 +13,7 @@ use Auth, Hash;
 class ProfileController extends Controller
 {
     public function edit() {
-        return view('profile.edit');
+        return view('pages.profile.edit');
     }
 
     public function update(ProfileUpdateRequest $request) {
@@ -33,7 +33,7 @@ class ProfileController extends Controller
     }
 
     public function passwordEdit() {
-        return view('profile.password');
+        return view('pages.profile.password');
     }
 
     public function passwordUpdate(PasswordChangeRequest $request) {

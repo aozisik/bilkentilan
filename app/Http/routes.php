@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
 	// Password change
 	Route::get('profile/password', 'ProfileController@passwordEdit');
 	Route::post('profile/password', 'ProfileController@passwordUpdate');
+	// Classifieds
+	Route::resource('classifieds', 'ClassifiedsController');
 });
 
 
