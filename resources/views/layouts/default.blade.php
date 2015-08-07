@@ -38,7 +38,7 @@
               <ul class="dropdown-menu">
                 <li><a href="{{ url('profile/edit') }}">Hesap Bilgilerim</a></li>
                 <li><a href="{{ url('profile/password') }}">Şifremi Değiştir</a></li>
-                <li><a href="">Çıkış</a></li>
+                <li><a href="{{ url('auth/logout') }}">Çıkış</a></li>
               </ul>
             </li>            
             @else
