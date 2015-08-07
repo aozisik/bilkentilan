@@ -7,7 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "laravelcollective/html": "5.1.*"
+        "laravelcollective/html": "5.1.*",
+        "aws/aws-sdk-php": "3.0.*",        
+        "codesleeve/laravel-stapler": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

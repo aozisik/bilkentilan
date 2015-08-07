@@ -20,8 +20,15 @@ class CreateClassifiedsTable extends Migration
             $table->text('description');
             $table->double('price', 9, 2)->nullable();
             $table->integer('quantity')->nullable();
-            $table->boolean('approved')->default(true);
+            
+            $table->boolean('is_approved')->default(true);
             $table->integer('visits')->unsigned();
+
+            $table->string('photo_file_name')->nullable();
+            $table->integer('photo_file_size')->nullable();
+            $table->string('photo_content_type')->nullable();
+            $table->timestamp('photo_updated_at')->nullable();
+
             $table->timestamp('expires_at');
             $table->timestamps();
         });
