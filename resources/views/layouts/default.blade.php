@@ -28,7 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <div class="container wrapper">
-          <a href="addClassified.html" class="btn btn-danger navbar-btn add-classified-btn navbar-left" role="button">İlan Ekle</a>
+          <a href="{{ Auth::check() ? url('classifieds/create') : url('auth/login') }}" class="btn btn-danger navbar-btn add-classified-btn navbar-left" role="button"><i class="glyphicon glyphicon-plus"></i> İlan Ekle</a>
           
           <ul class="nav navbar-nav navbar-right">
             
@@ -91,14 +91,14 @@
         <div class="well well-sm">
           <div class="pull-left">
             <ul class="nav nav-pills">
-              <li><a href="addClassified.html"><span class="glyphicon glyphicon-plus"></span> İlan Ekle</a></li>
+              <li><a href="{{ Auth::check() ? url('classifieds/create') : url('auth/login') }}"><span class="glyphicon glyphicon-plus"></span> İlan Ekle</a></li>
             </ul>
           </div>
           <div class="pull-right">
             <ul class="nav nav-pills">
-              <li><a href="help.html">Hakkında</a></li>
-              <li><a href="contact.html">İletişim</a></li>
-              <li><%= link_to 'Kullanım Şartları', 'sartlar' %></li>
+              <li><a href="http://github.com/aozisik/bilkentilan#readme" target="_blank">Hakkında</a></li>
+              <li><a href="{{ url('iletisim') }}">İletişim</a></li>
+              <li><a href="{{ url('sartlar') }}">Kullanım Şartları</a></li>
             </ul>
           </div>
           <div class="clearfix">&nbsp;</div>
@@ -111,5 +111,8 @@
       	</small></div>
 	        
 </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
