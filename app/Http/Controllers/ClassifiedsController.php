@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClassifiedRequest;
 use App\Classified, App\Category;
 
 class ClassifiedsController extends Controller
@@ -42,7 +43,7 @@ class ClassifiedsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ClassifiedRequest $request)
     {
         //
     }

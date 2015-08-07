@@ -108,7 +108,13 @@ return [
         'old_password' => 'Şimdiki Şifre',
     	'password' => 'Şifre',
         'first_name' => 'İsim',
-        'last_name' => 'Soyisim'
+        'last_name' => 'Soyisim',
+        'title' => 'Başlık',
+        'category_id' => 'Kategori',
+        'description' => 'Açıklama',
+        'photo' => 'Fotoğraf',
+        'price' => 'Fiyat',
+        'quantity' => 'Miktar',
     ],
 
 ];
