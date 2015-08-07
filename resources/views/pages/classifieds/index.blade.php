@@ -2,8 +2,9 @@
 @section('title', 'İlanlarım')
 @section('content')
 <h1>İlanlarım</h1>
+@if($classifieds->count())
 <div class="table-responsive">
-<table class="table table-striped table-hover ">
+<table class="table table-striped table-bordered table-hover ">
 	<thead>
 		<th></th>
 		<th>İlan No</th>
@@ -34,4 +35,7 @@
 	</tbody>
 </table>
 </div>
+@else
+<p>Size ait herhangi bir ilan bulamadık. <a href="{{ route('classifieds.create') }}">Bir ilan eklemek ister misiniz?</a></p>
+@endif
 @stop
