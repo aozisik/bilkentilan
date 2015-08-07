@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function() {
+	// Authentication routes...
+	Route::get('login', 'AuthController@getLogin');
+	Route::post('login', 'AuthController@postLogin');
+	Route::get('logout', 'AuthController@getLogout');
+	// Registration routes...
+	Route::get('register', 'AuthController@getRegister');
+	Route::post('register', 'AuthController@postRegister');
+});
+
+Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function() {
+	// Password reset link request routes...
+	Route::get('email', 'PasswordController@getEmail');
+	Route::post('email', 'PasswordController@postEmail');
+	// Password reset routes...
+	Route::get('reset/{token}', 'PasswordController@getReset');
+	Route::post('reset', 'PasswordController@postReset');
+});
+
