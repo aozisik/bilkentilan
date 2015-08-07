@@ -42,7 +42,7 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors(['Şimdiki şifre doğru girilmemiş']);
         }
 
-        Auth::user()->password = bcrypt($request->input('password'));
+        Auth::user()->password = $request->input('password');
         Auth::user()->save();
         
         return redirect()->back()->withSuccess('Şifreniz başarıyla güncellenmiştir');       

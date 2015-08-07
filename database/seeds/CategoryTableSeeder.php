@@ -72,5 +72,7 @@ class CategoryTableSeeder extends Seeder
         		Category::create(['name' => $subCategory, 'parent_id' => $category->id]);
         	}
         }
+
+        Cache::forget('categories');
     }
 }

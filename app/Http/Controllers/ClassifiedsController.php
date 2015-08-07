@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Classified, App\Category;
 
 class ClassifiedsController extends Controller
 {
@@ -26,7 +27,13 @@ class ClassifiedsController extends Controller
      */
     public function create()
     {
-        return view('pages.classifieds.create');
+        $subcategories = Category::with('parent')->children()->get()->groupBy(function($item) {
+            return $item->parent->name; 
+        })->map(function($item) {
+            return $item->lists('name', 'id')->all();
+        })->all();
+        
+        return view('pages.classifieds.create')->with(compact('subcategories'));
     }
 
     /**

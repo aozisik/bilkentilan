@@ -15,15 +15,10 @@
           </div>
           <h4>Kategoriler</h4>
           <div class="list-group categories">
-            <a href="#" class="list-group-item">Books <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Cameras & Photo <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Cell Phones & Accessories <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Clothing, Shoes & Accessories <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Computers & Networking <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">DVDs & Movies <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Health & Beauty <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Music <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <a href="#" class="list-group-item">Toys & Hobbies <span class="glyphicon glyphicon-chevron-right"></span></a>
+            @foreach($categories as $category)
+            <a href="#" class="list-group-item">{{ $category->name }} <span class="glyphicon glyphicon-chevron-right"></span></a>
+            @endforeach
+
           </div>
           <h4>Popüler İlanlar</h4>
           <div class="newest-classifieds">
