@@ -3,6 +3,8 @@
 <head>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <meta name="csrf-param" content="_token" />  
   <title>@yield('title', 'Bilkent Mensuplarına Özel İlan Sitesi') - Bilkent İlan</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/all.css') }}" />
@@ -114,6 +116,7 @@
 </div>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{{ asset('javascript/rails.js') }}"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

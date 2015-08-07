@@ -105,8 +105,9 @@ class ClassifiedsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(ClassifiedRequest $request, $id)
     {
-        //
+        Classified::findOrFail($id)->delete();
+        return back()->withSuccess('İlan başarıyla silinmiştir');
     }
 }

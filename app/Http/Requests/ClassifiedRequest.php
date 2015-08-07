@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Auth;
+use App\Classified;
 
 class ClassifiedRequest extends Request
 {
@@ -14,7 +15,12 @@ class ClassifiedRequest extends Request
      */
     public function authorize()
     {
-        return Auth::check();
+        if($this->method() == 'PUT' or $this->method() == 'DELETE') {
+            $id = $this->route('classifieds');
+            return Classified::where('id', $id)->where('user_id', Auth::user()->id)->exists();            
+        }
+
+        return true;
     }
 
     /**
@@ -24,6 +30,10 @@ class ClassifiedRequest extends Request
      */
     public function rules()
     {
+        if($this->method() == 'DELETE') {
+            return [];
+        }
+
         return [
             'title' => 'required|max:120',
             'category_id' => 'required|numeric',
