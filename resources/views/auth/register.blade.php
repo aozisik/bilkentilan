@@ -11,7 +11,7 @@
   <div class="col-lg-9">
   @include('_partials.errors')
     <div class="well">
-    {!! Form::open(['url' => 'auth/register']) !!}
+    {!! Form::open(['url' => url('auth/register')]) !!}
       <div class="form-group">
         <label>İsim</label>
         {!! Form::text('first_name', null, ['class' => 'form-control', 'autofocus' => 'true']) !!}

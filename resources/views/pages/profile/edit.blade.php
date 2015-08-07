@@ -12,7 +12,7 @@
   <div class="col-lg-9">
   @include('_partials.errors')
     <div class="well">
-    {!! Form::open(['url' => 'profile/edit', 'method' => 'PUT']) !!}
+    {!! Form::open(['url' => url('profile/edit'), 'method' => 'PUT']) !!}
       <div class="form-group">
         <label>İsim</label>
         {!! Form::text('first_name', Auth::user()->first_name, ['class' => 'form-control', 'autofocus' => 'true']) !!}

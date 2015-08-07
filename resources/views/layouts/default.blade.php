@@ -28,7 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <div class="container wrapper">
-          <a href="{{ Auth::check() ? url('classifieds/create') : url('auth/login') }}" class="btn btn-danger navbar-btn add-classified-btn navbar-left" role="button"><i class="glyphicon glyphicon-plus"></i> İlan Ekle</a>
+          <a href="{{ Auth::check() ? route('classifieds.create') : url('auth/login') }}" class="btn btn-danger navbar-btn add-classified-btn navbar-left" role="button"><i class="glyphicon glyphicon-plus"></i> İlan Ekle</a>
           
           <ul class="nav navbar-nav navbar-right">
             
@@ -91,7 +91,7 @@
         <div class="well well-sm">
           <div class="pull-left">
             <ul class="nav nav-pills">
-              <li><a href="{{ Auth::check() ? url('classifieds/create') : url('auth/login') }}"><span class="glyphicon glyphicon-plus"></span> İlan Ekle</a></li>
+              <li><a href="{{ Auth::check() ? route('classifieds.create') : url('auth/login') }}"><span class="glyphicon glyphicon-plus"></span> İlan Ekle</a></li>
             </ul>
           </div>
           <div class="pull-right">

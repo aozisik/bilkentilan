@@ -12,7 +12,7 @@
   <div class="col-lg-9">
   @include('_partials.errors')
     <div class="well">
-    {!! Form::open(['url' => 'profile/password']) !!}
+    {!! Form::open(['url' => url('profile/password') ]) !!}
   
       <div class="form-group">
         <label>Şimdiki Şifre</label>

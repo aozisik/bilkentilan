@@ -11,7 +11,7 @@
   <div class="col-lg-9">
   @include('_partials.errors')
     <div class="well">
-    {!! Form::open(['url' => 'password/email']) !!}
+    {!! Form::open(['url' => url('password/email')]) !!}
   
       <div class="form-group">
         <label>Bilkent Eposta Adresi</label>
