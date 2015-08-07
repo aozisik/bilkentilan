@@ -29,7 +29,7 @@ class ClassifiedRequest extends Request
             'category_id' => 'required|numeric',
             'price' => 'numeric',
             'quantity' => 'numeric|required_with:price',
-            'description' => 'required|min:200',
+            'description' => 'required|min:100',
             'photo' => 'image|mimes:jpeg,png,gif|max:1024'
         ];
     }

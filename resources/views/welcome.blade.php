@@ -16,7 +16,7 @@
           <h4>Kategoriler</h4>
           <div class="list-group categories">
             @foreach($categories as $category)
-            <a href="#" class="list-group-item">{{ $category->name }} <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a href="#" class="list-group-item">{{ $category }} <span class="glyphicon glyphicon-chevron-right"></span></a>
             @endforeach
 
           </div>

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassifiedRequest;
 use App\Classified, App\Category;
+use Carbon\Carbon;
 
 class ClassifiedsController extends Controller
 {
@@ -45,7 +46,20 @@ class ClassifiedsController extends Controller
      */
     public function store(ClassifiedRequest $request)
     {
-        //
+        $classified = new Classified($request->only(
+            'title',
+            'category_id',
+            'price',
+            'quantity',
+            'photo',
+            'description'
+        ));
+
+        $classified->expires_at = Carbon::now()->addDays(30);
+        $classified->is_approved = 1;
+        $classified->save();
+
+        return redirect(route('classifieds.index'))->withSuccess('İlanınız başarıyla kaydedilip yayına alınmıştır');
     }
 
     /**
