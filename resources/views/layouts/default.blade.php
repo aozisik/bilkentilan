@@ -42,7 +42,7 @@
               </ul>
             </li>            
             @else
-            <li><a href="">Kayıt Ol</a></li>
+            <li><a href="{{ url('auth/register') }}">Kayıt Ol</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Giriş Yap <b class="caret"></b></a>
               <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">

@@ -44,7 +44,13 @@ class AuthController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users|regex:/@bilkent.edu.tr|@ug.bilkent.edu.tr|@ee.bilkent.edu.tr|@cs.bilkent.edu.tr|@ie.bilkent.edu.tr|@fen.bilkent.edu.tr|@ctp.bilkent.edu.tr|@alumni.bilkent.edu.tr/i',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                'unique:users',
+                'regex:/@bilkent.edu.tr|@ug.bilkent.edu.tr|@ee.bilkent.edu.tr|@cs.bilkent.edu.tr|@ie.bilkent.edu.tr|@fen.bilkent.edu.tr|@ctp.bilkent.edu.tr|@alumni.bilkent.edu.tr$/i',
+            ],
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -58,9 +64,11 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'password' => bcrypt($data['password']),
+            'newsletter' => $data['newsletter'],
         ]);
     }
 }

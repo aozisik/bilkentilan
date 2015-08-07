@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->boolean('show_email');
             $table->boolean('newsletter');
 
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(false);
             $table->string('activation_key', 32);
 
             $table->rememberToken();
