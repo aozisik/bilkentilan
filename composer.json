@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
         "aws/aws-sdk-php": "3.0.*",        
-        "codesleeve/laravel-stapler": "dev-master"
+        "codesleeve/laravel-stapler": "dev-master",
+        "thujohn/twitter": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
