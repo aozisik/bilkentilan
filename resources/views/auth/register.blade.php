@@ -40,7 +40,7 @@
 
      <div class="checkbox">
         <label>
-          {!! Form::checkbox('newsletter', null) !!}
+          {!! Form::checkbox('newsletter', '1') !!}
           Yenilikler, püf noktaları ve ilgilendiğim ilanlar ile ilgili bana eposta gönder
         </label>
       </div>    

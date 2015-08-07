@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function() {
 	// Authentication routes...
 	Route::get('login', 'AuthController@getLogin');
@@ -33,4 +37,17 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function() {
 	Route::get('reset/{token}', 'PasswordController@getReset');
 	Route::post('reset', 'PasswordController@postReset');
 });
+
+/**
+ * Authenticated users only
+ */
+Route::group(['middleware' => 'auth'], function() {
+	// User profile
+	Route::get('profile/edit', 'ProfileController@edit');
+	Route::put('profile/edit', 'ProfileController@update');
+	// Password change
+	Route::get('profile/password', 'ProfileController@passwordEdit');
+	Route::post('profile/password', 'ProfileController@passwordUpdate');
+});
+
 
