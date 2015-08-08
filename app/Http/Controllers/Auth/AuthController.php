@@ -35,6 +35,10 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+    protected function getCredentials(Request $request) {
+        return $request->only($this->loginUsername(), 'password') + ['is_active' => 1];        
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *

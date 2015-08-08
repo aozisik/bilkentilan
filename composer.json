@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.1.*",
         "aws/aws-sdk-php": "2.7.*",
         "codesleeve/laravel-stapler": "dev-master",
-        "thujohn/twitter": "~2.0"
+        "thujohn/twitter": "~2.0",
+        "guzzlehttp/guzzle": "~5.3|~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
