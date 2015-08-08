@@ -15,13 +15,6 @@ class ViewPresenters extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function($view) {
-            $categories = Cache::rememberForever('categories', function() {
-                return Category::main()->get()->lists('name', 'id')->all();
-            });            
-            $view->with('categories', $categories);
-        });
-
         view()->composer('pages.classifieds.form', function($view) {
             $subcategories = Category::with('parent')->children()->get()->groupBy(function($item) {
                 return $item->parent->name; 
@@ -33,11 +26,15 @@ class ViewPresenters extends ServiceProvider
         });
 
         view()->composer('_partials.left_menu', function($view) {
+            $categories = Cache::rememberForever('categories', function() {
+                return Category::main()->get()->lists('name', 'id')->all();
+            });            
+
             $popular = Cache::remember('popular', 15, function() {
                 return Classified::active()->popular()->recent()->limit(3)->get();
             });
 
-            $view->with('popular', $popular);
+            $view->with(compact('popular'))->with(compact('categories'));
         });
     }
 
