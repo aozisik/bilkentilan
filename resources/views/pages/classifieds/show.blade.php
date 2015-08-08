@@ -24,12 +24,13 @@
 
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}">Ana Sayfa</a></li>
-    <!--
-    <li><a href="#">Categories</a></li>
-    <li><a href="#">Cell Phones & Accessories</a></li>
-    <li><a href="#">Smartphones</a></li>
-    -->
-  </ol>
+    <li><a href="{{ url('/') }}">Kategoriler</a></li>
+    @if($classified->category->parent_id)
+    <li><a href="{{ route('categories.show', $classified->category->parent_id) }}">{{ $classified->category->parent->name }}</a></li>
+    @endif
+    <li><a href="{{ route('categories.show', $classified->category->id) }}">{{ $classified->category->name }}</a></li>
+    <li>{{ $classified->title }}</li>
+  </ol> 
   
   <h2>{{ $classified->title }}</h2>
   <div class="row">
