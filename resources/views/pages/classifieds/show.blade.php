@@ -7,9 +7,9 @@
 @endif
 <meta property="og:title" content="{{ $classified->title }}"/>
 <meta property="og:url" content="{{ $classified->url() }}" />
-<meta name="twitter:card" content="summary">'
-<meta name="twitter:site" content="@bilkentilan">'
-<meta name="twitter:title" content="{{ $classified->title }}">' % title
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@bilkentilan">
+<meta name="twitter:title" content="{{ $classified->title }}">
 <meta name="twitter:description" content="{{ trim($classified->description) }}">
 @if($classified->photo->size())
 <meta name="twitter:image:src" content="{{ $classified->photo->url('medium') }}">
