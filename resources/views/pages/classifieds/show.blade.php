@@ -115,7 +115,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <h4>Bu İlan ile İlgili Soru Sorun</h4>
+      <h4>İlan Sahibine Soru Sorun</h4>
       <div class="panel panel-default">
         <div class="panel-body">                
           <form action="#" method="POST">
