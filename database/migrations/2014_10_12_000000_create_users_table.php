@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->boolean('newsletter');
 
             $table->boolean('is_active')->default(false);
-            $table->string('activation_key', 32);
+            $table->string('activation_key', 32)->index();
 
             $table->rememberToken();
             $table->timestamps();

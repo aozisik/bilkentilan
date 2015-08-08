@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use App\Events\UserRegistered;
 
 class AuthController extends Controller
 {
@@ -63,12 +65,44 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create(array_only($data, [
+        $user = new User(array_only($data, [
             'email',
             'first_name',
             'last_name',
             'password',
             'newsletter'
         ]));
+
+        $user->activation_key = md5(uniqid());
+        $user->is_active = 0;
+        $user->save();
+        //
+        event(new UserRegistered($user));
+        return $user;
+    }
+
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $this->create($request->all());
+
+        return redirect(url('/'))->withSuccess('Eposta adresinize bir aktivasyon postası gönderdik. Lütfen hem gelen kutunuzu hem de spam klasörünü kontrol edin.');
+    }
+
+    public function getActivate($key) {
+        //
+        $user = User::where('activation_key', $key)->firstOrFail();
+        $user->is_active = 1;
+        $user->activation_key = '';
+        $user->save();
+
+        return redirect(url('auth/login'))->withSuccess('Hesabınız başarıyla aktifleştirildi. Giriş yapabilirsiniz.');
     }
 }

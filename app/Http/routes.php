@@ -22,6 +22,8 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function() {
 	// Registration routes...
 	Route::get('register', 'AuthController@getRegister');
 	Route::post('register', 'AuthController@postRegister');
+	// Activation routes
+	Route::get('activate/{key}', 'AuthController@getActivate');
 });
 
 Route::group(['namespace' => 'Auth', 'prefix' => 'password'], function() {
