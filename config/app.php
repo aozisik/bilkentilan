@@ -202,7 +202,9 @@ return [
          * Third-party Facades
          */
         'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,    
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Twitter'   => Thujohn\Twitter\Facades\Twitter::class,
+
     ],
 
 ];

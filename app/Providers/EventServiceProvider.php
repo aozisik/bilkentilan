@@ -14,8 +14,11 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\UserRegistered' => [
-            'App\Listeners\ActivationMailListener',
+            'App\Listeners\SendActivationMail',
         ],
+        'App\Events\ClassifedWasCreated' => [
+            'App\Listeners\PostClassifiedOnTwitter'
+        ]
     ];
 
     /**

@@ -12,6 +12,8 @@ use App\Classified, App\Category;
 use Carbon\Carbon;
 use Auth, Cache;
 
+use App\Events\ClassifedWasCreated;
+
 class ClassifiedsController extends Controller
 {
     /**
@@ -59,6 +61,8 @@ class ClassifiedsController extends Controller
         $classified->expires_at = Carbon::now()->addDays(30);
         $classified->is_approved = 1;
         $classified->save();
+
+        event(new ClassifedWasCreated($classified));
 
         return redirect(route('classifieds.index'))->withSuccess('İlanınız başarıyla kaydedilip yayına alınmıştır');
     }
