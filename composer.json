@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
-        "aws/aws-sdk-php": "2.4.*@dev",
+        "aws/aws-sdk-php": "2.7.*",
         "codesleeve/laravel-stapler": "dev-master",
         "thujohn/twitter": "~2.0"
     },
