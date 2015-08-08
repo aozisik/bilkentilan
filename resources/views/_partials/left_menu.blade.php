@@ -1,13 +1,13 @@
  <div class="col-lg-3 content-left">
           <h4>Arama</h4>
           <div class="well well-sm">
-            <form>
+            {!! Form::open(['url' => url('search'), 'method' => 'GET']) !!}
               <fieldset>
-                <input type="text" class="form-control" />
-                <small><a href="#" class="btn-advanced-search">Gelişmiş</a></small>
+                {!! Form::text('keyword', old('keyword'), ['placeholder' => 'İlanlar içinde arama yap', 'class' => 'form-control']) !!}
+                <!-- <small><a href="#" class="btn-advanced-search">Gelişmiş</a></small> -->
                 <input type="submit" class="btn btn-danger btn-sm btn-search" value="Ara" />
               </fieldset>
-            </form>
+            {!! Form::close() !!}
           </div>
           <h4>Kategoriler</h4>
           <div class="list-group categories">

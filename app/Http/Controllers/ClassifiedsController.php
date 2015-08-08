@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassifiedRequest;
+use App\Http\Requests\SearchRequest;
 use App\Classified, App\Category;
 use Carbon\Carbon;
 use Auth, Cache;
@@ -131,5 +132,12 @@ class ClassifiedsController extends Controller
     {
         Classified::findOrFail($id)->delete();
         return back()->withSuccess('İlan başarıyla silinmiştir');
+    }
+
+    public function search(SearchRequest $request) {
+        $request->flash();
+
+        $classifieds = Classified::active()->popular()->where('title', 'LIKE', '%'.$request->input('keyword').'%')->paginate(10);
+        return view('pages.classifieds.search')->with(compact('classifieds'));
     }
 }
