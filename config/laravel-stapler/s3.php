@@ -18,10 +18,6 @@ return [
         'region' => env('S3_REGION'),
         'scheme' => 'http',
         'version' => '2006-03-01',
-        'credentials' => [
-            'key' => env('S3_KEY'),
-            'secret' => env('S3_SECRET'),        
-        ]
     ],
     
     /*

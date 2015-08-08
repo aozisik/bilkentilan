@@ -22,6 +22,16 @@ class ViewPresenters extends ServiceProvider
         view()->composer('*', function($view) use($categories) {
             $view->with('categories', $categories);
         });
+
+        view()->composer('pages.classifieds.form', function($view) {
+            $subcategories = Category::with('parent')->children()->get()->groupBy(function($item) {
+                return $item->parent->name; 
+            })->map(function($item) {
+                return $item->lists('name', 'id')->all();
+            })->all();
+
+            $view->with('subcategories', $subcategories);
+        });
     }
 
     /**

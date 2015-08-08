@@ -31,13 +31,10 @@ class ClassifiedsController extends Controller
      */
     public function create()
     {
-        $subcategories = Category::with('parent')->children()->get()->groupBy(function($item) {
-            return $item->parent->name; 
-        })->map(function($item) {
-            return $item->lists('name', 'id')->all();
-        })->all();
+        $classified = new Classified;
+        $classified->quantity = 1;
         
-        return view('pages.classifieds.create')->with(compact('subcategories'));
+        return view('pages.classifieds.create')->with(compact('classified'));
     }
 
     /**
@@ -84,7 +81,8 @@ class ClassifiedsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classified = Classified::findOrFail($id);
+        return view('pages.classifieds.edit')->with(compact('classified'));
     }
 
     /**
@@ -94,9 +92,22 @@ class ClassifiedsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(ClassifiedRequest $request, $id)
     {
-        //
+        $classified = Classified::findOrFail($id);
+        $classified->fill($request->only(
+            'title',
+            'category_id',
+            'price',
+            'quantity',
+            'photo',
+            'description'
+        ));
+
+        $classified->expires_at = Carbon::now()->addDays(30);
+        $classified->save();
+
+        return back()->withSuccess('İlanınız güncellenmiştir ve süresi uzatılmıştır');
     }
 
     /**

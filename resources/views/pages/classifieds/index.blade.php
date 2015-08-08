@@ -4,7 +4,7 @@
 <h1>İlanlarım</h1>
 @if($classifieds->count())
 <div class="table-responsive">
-<table class="table table-striped table-bordered table-hover ">
+<table class="table table-striped table-bordered table-hover table-center">
 	<thead>
 		<th></th>
 		<th>İlan No</th>
@@ -18,11 +18,11 @@
 	<tbody class="">
 		@foreach($classifieds as $classified)
 		<tr>
-			<td><img src="{{ $classified->photo->url('thumb') }}" width="64" height="64" alt="Fotoğraf" /></td>
+			<td class="text-center"><img src="{{ $classified->photo->url('thumb') }}" width="64" height="64" alt="Fotoğraf" /></td>
 			<td>{{ $classified->id }}</td>
 			<td>{{ $classified->title }}</td>
 			<td>{{ $classified->categoryName }}</td>
-			<td>{{ $classified->price }}</td>
+			<td>{{ $classified->price }} TL</td>
 			<td>{{ $classified->visits }}</td>
 			<td>{{ $classified->expires_at->format('d.m.Y') }}</td>
 			<td>
