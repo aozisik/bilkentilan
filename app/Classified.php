@@ -29,6 +29,10 @@ class Classified extends Model implements StaplerableInterface
     	return $this->belongsTo(Category::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function scopeOwnedBy($query, $userId) {
     	return $query->where('user_id', $userId);
     }

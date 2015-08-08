@@ -70,7 +70,8 @@ class ClassifiedsController extends Controller
      */
     public function show($id)
     {
-        //
+        $classified = Classified::findOrFail($id);
+        return view('pages.classifieds.show')->with(compact('classified'));        
     }
 
     /**
