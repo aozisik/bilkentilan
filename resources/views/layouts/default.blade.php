@@ -101,8 +101,8 @@
           <div class="pull-right">
             <ul class="nav nav-pills">
               <li><a href="http://github.com/aozisik/bilkentilan#readme" target="_blank">Hakkında</a></li>
-              <li><a href="{{ url('iletisim') }}">İletişim</a></li>
-              <li><a href="{{ url('sartlar') }}">Kullanım Şartları</a></li>
+              <li><a href="http://github.com/aozisik/bilkentilan#readme" target="_blank">İletişim</a></li>
+              <li><a href="{{ url('tos') }}">Kullanım Şartları</a></li>
             </ul>
           </div>
           <div class="clearfix">&nbsp;</div>
