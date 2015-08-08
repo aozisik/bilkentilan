@@ -15,7 +15,7 @@
     {!! Form::open(['url' => route('classifieds.store'), 'files' => 1]) !!}
     @include('pages.classifieds.form')
       <div class="actions">
-        {!! Form::submit('İlan Ekle', ['class' => 'btn btn-primary']) !!}
+        <button type="submit" class="btn btn-primary" data-disable-with="Kaydediliyor...">İlan Ekle</button>
       </div>    
     {!! Form::close() !!}
     </div>

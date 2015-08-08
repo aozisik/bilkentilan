@@ -5,7 +5,9 @@
 
         <div class="col-lg-9 content-right">
           <h4>Son İlanlar</h4>
+          @if($classifieds->count())
           <div class="row selected-classifieds">
+          
             @foreach($classifieds as $classified)
             <div class="col-lg-3">
               <div class="thumbnail">
@@ -19,8 +21,10 @@
               </div>
             </div>            
             @endforeach
-
           </div>
+          @else
+          <p>Burası biraz boş :/</p>
+          @endif          
         </div>
       
       <!-- /Content -->

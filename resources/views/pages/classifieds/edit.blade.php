@@ -15,7 +15,7 @@
     {!! Form::open(['url' => route('classifieds.update', $classified->id), 'method' => 'PUT', 'files' => 1]) !!}
     @include('pages.classifieds.form')
       <div class="actions">
-      	{!! Form::submit('İlanı Güncelle', ['class' => 'btn btn-primary']) !!}
+        <button type="submit" class="btn btn-primary" data-disable-with="Kaydediliyor...">İlanı Güncelle</button>
       </div>    
     {!! Form::close() !!}
     </div>
