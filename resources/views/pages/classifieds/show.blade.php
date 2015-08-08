@@ -66,7 +66,7 @@
             <td>İlan No</td>
             <td>{{ $classified->id }}</td>
           </tr>
-          @if($classified->price)
+          @if($classified->price > 0)
           <tr>
             <td>Fiyat</td>
             <td>{{ $classified->price }} ₺</td>

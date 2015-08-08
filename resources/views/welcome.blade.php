@@ -16,7 +16,7 @@
                 </a>
                 <div class="caption">
                   <p><small><a href="{{ $classified->url() }}">{{ $classified->title }}</a></small></p>
-                  @if($classified->price)
+                  @if($classified->price > 0)
                   <p><strong>{{ $classified->price.' ₺' }}</strong></p>
                   @endif
                 </div>
