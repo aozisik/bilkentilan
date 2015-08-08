@@ -6,6 +6,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="csrf-param" content="_token" />  
   <title>@yield('title', 'Bilkent Mensuplarına Özel İlan Sitesi') - Bilkent İlan</title>
+  @yield('socialMedia', '')
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/all.css') }}" />
 </head>

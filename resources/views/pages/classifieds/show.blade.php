@@ -1,4 +1,20 @@
 @extends('layouts.default')
+@section('title', $classified->title)
+@section('socialMedia')
+<meta property="og:site_name" content="Bilkent İlan"/>
+@if($classified->photo->size())
+<meta property="og:image" content="{{ $classified->photo->url('medium') }}" />
+@endif
+<meta property="og:title" content="{{ $classified->title }}"/>
+<meta property="og:url" content="{{ routes('classifieds.show', $classified->id) }}" />
+<meta name="twitter:card" content="summary">'
+<meta name="twitter:site" content="@bilkentilan">'
+<meta name="twitter:title" content="{{ $classified->title }}">' % title
+<meta name="twitter:description" content="{{ trim($classified->description) }}">
+@if($classified->photo->size())
+<meta name="twitter:image:src" content="{{ $classified->photo->url('medium') }}">
+@endif
+@stop
 @section('content')
  <!-- Content -->
 @include('_partials/left_menu')
@@ -15,7 +31,7 @@
     -->
   </ol>
   
-  <h2>Samsung Galaxy S4</h2>
+  <h2>{{ $classified->title }}</h2>
   <div class="row">
     <div class="col-md-8">
       <div class="row">
