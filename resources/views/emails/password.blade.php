@@ -7,20 +7,20 @@
 </head>
 <body>
 
-	Hello, <br />
+	Merhaba, <br />
 
-	You requested to reset your password for your Alternative Tour account.<br />
-	Please click <a href="{{ url('password/reset/'.$token) }}">here</a> to reset your password<br />
+	Bilkent İlan hesabınızın şifresini sıfırlamak istediniz.<br />
+	Lütfen <a href="{{ url('password/reset/'.$token) }}">bu bağlantıya</a> tıklayarak şifrenizi sıfırlayın<br />
 	<br />
-	If the above link does not work, copy and paste the following URL to your browser:<br />
+	Yukarıdaki bağlantı çalışmıyorsa aşağıdaki adresi tarayıcınızın adres çubuğuna yapıştırın:<br />
 	{{ url('password/reset/'.$token) }}	
 	<br />
 	<br />
-	Best Regards,
-	Alternative Tour Team
+	Teşekkürler,
+	Bilkent İlan
 	<br />
 	<br />
-	<small>You can safely delete this email if you did not request to reset your password.<br />
-	Please do not reply to this email</small>
+	<small>Böyle bir talepte bulunmadıysanız, bu epostayı silebilirsiniz. Şifreniz sıfırlanmayacak.<br />
+	Lütfen bu epostaya cevap yazmayın</small>
 </body>
 </html>
