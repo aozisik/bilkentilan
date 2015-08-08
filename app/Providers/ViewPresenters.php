@@ -15,11 +15,10 @@ class ViewPresenters extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Cache::rememberForever('categories', function() {
-            return Category::main()->get()->lists('name', 'id')->all();
-        });
-
-        view()->composer('*', function($view) use($categories) {
+        view()->composer('*', function($view) {
+            $categories = Cache::rememberForever('categories', function() {
+                return Category::main()->get()->lists('name', 'id')->all();
+            });            
             $view->with('categories', $categories);
         });
 
