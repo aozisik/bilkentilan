@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $classifieds = Classified::recent()->limit(16)->get();
+        $classifieds = Classified::active()->recent()->limit(16)->get();
         return view('welcome')->with(compact('classifieds'));
     }
 

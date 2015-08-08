@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Codesleeve\Stapler\ORM\StaplerableInterface;
 use Codesleeve\Stapler\ORM\EloquentTrait;
+use Carbon\Carbon;
 
 class Classified extends Model implements StaplerableInterface
 {
@@ -43,6 +44,10 @@ class Classified extends Model implements StaplerableInterface
 
     public function scopeRecent($query) {
     	return $query->orderBy('updated_at', 'DESC');
+    }
+
+    public function scopeActive($query) {
+        return $query->where('expires_at', '>', Carbon::now());
     }
 
     public function getCategoryNameAttribute() {

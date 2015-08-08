@@ -35,7 +35,7 @@ class ViewPresenters extends ServiceProvider
 
         view()->composer('_partials.left_menu', function($view) {
             $popular = Cache::remember('popular', 15, function() {
-                return Classified::popular()->recent()->limit(3)->get();
+                return Classified::active()->popular()->recent()->limit(3)->get();
             });
 
             $view->with('popular', $popular);
