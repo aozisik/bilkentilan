@@ -20,7 +20,7 @@
 		<tr>
 			<td class="text-center"><img src="{{ $classified->photo->url('thumb') }}" width="64" height="64" alt="Fotoğraf" /></td>
 			<td>{{ $classified->id }}</td>
-			<td><a href="{{ route('classifieds.show', $classified->id) }}">{{ $classified->title }}</a></td>
+			<td><a href="{{ $classified->url() }}">{{ $classified->title }}</a></td>
 			<td>{{ $classified->categoryName }}</td>
 			<td>{{ $classified->price }} TL</td>
 			<td>{{ $classified->visits }}</td>

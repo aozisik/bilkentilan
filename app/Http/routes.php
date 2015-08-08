@@ -46,7 +46,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('profile/password', 'ProfileController@passwordEdit');
 	Route::post('profile/password', 'ProfileController@passwordUpdate');
 	// Classifieds
-	Route::resource('classifieds', 'ClassifiedsController');
+	Route::resource('classifieds', 'ClassifiedsController', ['except' => 'show']);
 });
 
+Route::get('classifieds/{id}/{slug?}', ['as' => 'classifieds.show', 'uses' => 'ClassifiedsController@show']);
 

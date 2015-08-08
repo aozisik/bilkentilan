@@ -9,11 +9,11 @@
             @foreach($classifieds as $classified)
             <div class="col-lg-3">
               <div class="thumbnail">
-                <a href="{{ route('classifieds.show', $classified->id) }}">
+                <a href="{{ $classified->url() }}">
                   <img src="{{ $classified->photo->url('medium') }}" />
                 </a>
                 <div class="caption">
-                  <p><small><a href="{{ route('classifieds.show', $classified->id) }}">{{ $classified->title }}</a></small></p>
+                  <p><small><a href="{{ $classified->url() }}">{{ $classified->title }}</a></small></p>
                   <p><strong>{{ $classified->price ? $classified->price.' ₺' : '' }}</strong></p>
                 </div>
               </div>

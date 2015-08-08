@@ -44,4 +44,8 @@ class Classified extends Model implements StaplerableInterface
     public function getCategoryNameAttribute() {
     	return $this->category->parent->name.' > '.$this->category->name;
     }
+
+    public function url() {
+        return route('classifieds.show', ['id' => $this->id, 'slug' => str_slug($this->title)]);
+    }
 }

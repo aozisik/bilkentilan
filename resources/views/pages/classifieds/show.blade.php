@@ -6,7 +6,7 @@
 <meta property="og:image" content="{{ $classified->photo->url('medium') }}" />
 @endif
 <meta property="og:title" content="{{ $classified->title }}"/>
-<meta property="og:url" content="{{ routes('classifieds.show', $classified->id) }}" />
+<meta property="og:url" content="{{ $classified->url() }}" />
 <meta name="twitter:card" content="summary">'
 <meta name="twitter:site" content="@bilkentilan">'
 <meta name="twitter:title" content="{{ $classified->title }}">' % title
