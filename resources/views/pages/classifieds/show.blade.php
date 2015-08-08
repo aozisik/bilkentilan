@@ -20,6 +20,7 @@
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-12" id="slider">
+          @if($classified->photo->size())
           <div class="col-md-12" id="carousel-bounding-box" style="padding:0px;margin-top:10px;margin-bottom:12px;">
             <div id="detailCarousel" class="carousel slide">
               <div class="carousel-inner">
@@ -31,6 +32,7 @@
               
             </div>
           </div>
+          @endif
 
           <p style="text-align: justify;">{{ $classified->description }}</p>          
         </div>
