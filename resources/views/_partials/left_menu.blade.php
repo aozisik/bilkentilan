@@ -25,7 +25,7 @@
               </a>
               <div class="media-body">
                 <p><a href="{{ $classified->url() }}"><strong>{{ $classified->title }}</strong></a></p>
-                <p>{{ str_limit($classified->description, 55) }}...</p>
+                <p>{{ str_limit($classified->description, 55) }}</p>
               </div>
             </div>
             @endforeach

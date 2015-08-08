@@ -22,9 +22,11 @@ class CategoriesController extends Controller
         $category = Category::findOrFail($id);
 
         if($category->parent_id) {
+            $mainCategory = $category->parent;
             $query = Classified::where('category_id', $id);
 
         } else {
+            $mainCategory = $category;
             $query = Classified::whereHas('category', function($q) use($category) {
                 $q->where('parent_id', $category->id);
             });
@@ -34,7 +36,8 @@ class CategoriesController extends Controller
 
         return view('pages.categories.show')
             ->with(compact('category'))
-            ->with(compact('classifieds'));
+            ->with(compact('classifieds'))
+            ->with(compact('mainCategory'));
     }
 
 }
