@@ -129,7 +129,7 @@
       
     </div>
   </div>
-  @if(Auth::check())
+  @if(false)
   <hr>
   <div class="row">
     <div class="col-md-12">
