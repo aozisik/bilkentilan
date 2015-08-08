@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Category;
+use App\Category, App\Classified;
 use Cache;
 
 class ViewPresenters extends ServiceProvider
@@ -31,6 +31,14 @@ class ViewPresenters extends ServiceProvider
             })->all();
 
             $view->with('subcategories', $subcategories);
+        });
+
+        view()->composer('_partials.left_menu', function($view) {
+            $popular = Cache::remember('popular', 15, function() {
+                return Classified::popular()->recent()->limit(3)->get();
+            });
+
+            $view->with('popular', $popular);
         });
     }
 

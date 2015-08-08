@@ -37,6 +37,10 @@ class Classified extends Model implements StaplerableInterface
     	return $query->where('user_id', $userId);
     }
 
+    public function scopePopular($query) {
+        return $query->orderBy('visits', 'DESC');
+    }
+
     public function scopeRecent($query) {
     	return $query->orderBy('updated_at', 'DESC');
     }
