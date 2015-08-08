@@ -50,4 +50,4 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::get('classifieds/{id}/{slug?}', ['as' => 'classifieds.show', 'uses' => 'ClassifiedsController@show']);
-
+Route::get('categories/{id}', ['as' => 'categories.show', 'uses' => 'CategoriesController@show']);

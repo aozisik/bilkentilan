@@ -11,8 +11,8 @@
           </div>
           <h4>Kategoriler</h4>
           <div class="list-group categories">
-            @foreach($categories as $category)
-            <a href="#" class="list-group-item">{{ $category }} <span class="glyphicon glyphicon-chevron-right"></span></a>
+            @foreach($categories as $id => $category)
+            <a href="{{ route('categories.show', $id) }}" class="list-group-item">{{ $category }} <span class="glyphicon glyphicon-chevron-right"></span></a>
             @endforeach
 
           </div>
