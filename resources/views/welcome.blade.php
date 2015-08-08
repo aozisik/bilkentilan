@@ -16,7 +16,9 @@
                 </a>
                 <div class="caption">
                   <p><small><a href="{{ $classified->url() }}">{{ $classified->title }}</a></small></p>
-                  <p><strong>{{ $classified->price ? $classified->price.' ₺' : '' }}</strong></p>
+                  @if($classified->price)
+                  <p><strong>{{ $classified->price.' ₺' }}</strong></p>
+                  @endif
                 </div>
               </div>
             </div>            
