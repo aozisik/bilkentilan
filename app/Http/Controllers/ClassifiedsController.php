@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassifiedRequest;
 use App\Classified, App\Category;
 use Carbon\Carbon;
-use Auth;
+use Auth, Cache;
 
 class ClassifiedsController extends Controller
 {
@@ -68,9 +68,19 @@ class ClassifiedsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $classified = Classified::findOrFail($id);
+
+        $cacheKey = 'visited_'.$id.'_'.$request->getClientIp();
+
+        if( ! Cache::has($cacheKey)) {
+            $classified->visits++;
+            Cache::put($cacheKey, 1, 1440); // for a full day
+        }
+
+        $classified->save();
+
         return view('pages.classifieds.show')->with(compact('classified'));        
     }
 
