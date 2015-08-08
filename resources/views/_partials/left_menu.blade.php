@@ -12,7 +12,7 @@
           <h4>Kategoriler</h4>
           <div class="list-group categories">
             @foreach($categories as $id => $category)
-            <a href="{{ route('categories.show', $id) }}" class="list-group-item">{{ $category }} <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a href="{{ route('categories.show', $id) }}" class="list-group-item {{ (isset($mainCategory) and $mainCategory->id == $id) ? 'active' : '' }}">{{ $category }} <span class="glyphicon glyphicon-chevron-right"></span></a>
             @endforeach
 
           </div>
