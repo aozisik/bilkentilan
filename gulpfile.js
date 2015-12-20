@@ -12,5 +12,14 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.styles(['style.css']);
+
+    var bowerPath = '../../../vendor/bower_components/';
+
+    mix
+        .styles(['style.css'])
+        .scripts([
+            bowerPath + 'jquery/dist/jquery.min.js',
+            bowerPath + 'bootstrap/dist/js/bootstrap.min.js',
+            bowerPath + 'jquery-ujs/src/rails.js'
+        ], 'public/js/vendor.js');
 });
