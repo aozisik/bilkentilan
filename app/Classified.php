@@ -18,6 +18,7 @@ class Classified extends Model implements StaplerableInterface
         $this->hasAttachedFile('photo', [
             'styles' => [
                 'medium' => '800x600#',
+                'showcase' => '180x140#',
                 'thumb' => '64x64#'
             ],
             'default_url' => asset('images/placeholder.jpg')

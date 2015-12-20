@@ -1,4 +1,4 @@
-  /*
+/*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -281,12 +281,20 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   color: #9e2020
 }
 
+.thumbnailContainer
+{
+  height:240px;
+  max-height:240px;
+  overflow:hidden;
+}
+
 .content-right .selected-classifieds .thumbnail {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .content-right .selected-classifieds .caption {
   text-align: center;
+  word-wrap: break-word;
 }
 
 .content-right .selected-classifieds .caption p {

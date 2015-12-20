@@ -9,13 +9,13 @@
           <div class="row selected-classifieds">
           
             @foreach($classifieds as $classified)
-            <div class="col-lg-3">
+            <div class="col-lg-3 thumbnailContainer">
               <div class="thumbnail">
                 <a href="{{ $classified->url() }}">
-                  <img src="{{ $classified->photo->url('medium') }}" />
+                  <img src="{{ $classified->photo->url('showcase') }}" />
                 </a>
                 <div class="caption">
-                  <p><small><a href="{{ $classified->url() }}">{{ $classified->title }}</a></small></p>
+                  <p><small><a href="{{ $classified->url() }}">{{ str_limit($classified->title, 50) }}</a></small></p>
                   @if($classified->price > 0)
                   <p><strong>{{ $classified->price.' ₺' }}</strong></p>
                   @endif
