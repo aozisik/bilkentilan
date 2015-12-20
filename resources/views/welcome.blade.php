@@ -15,7 +15,7 @@
                   <img src="{{ $classified->photo->url('showcase') }}" />
                 </a>
                 <div class="caption">
-                  <p><small><a href="{{ $classified->url() }}">{{ str_limit($classified->title, 50) }}</a></small></p>
+                  <p><small><a href="{{ $classified->url() }}">{{ str_limit($classified->title, 48) }}</a></small></p>
                   @if($classified->price > 0)
                   <p><strong>{{ $classified->price.' ₺' }}</strong></p>
                   @endif
