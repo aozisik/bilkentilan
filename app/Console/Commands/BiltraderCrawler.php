@@ -75,6 +75,7 @@ class BiltraderCrawler extends Command
 
         $classified->user_id = $user->id;
         $classified->expires_at = Carbon::now()->addDays(30);
+        $classified->is_imported = true;
         $classified->save();
 
         $this->comment('Added Classified: "'.$classified->title.'"');
