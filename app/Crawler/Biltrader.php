@@ -3,6 +3,7 @@
 namespace App\Crawler;
 
 use App\Classified;
+use App\User;
 use Goutte\Client;
 
 class Biltrader
@@ -39,7 +40,7 @@ class Biltrader
     {
         $class = new $class;
 
-        foreach($mapping as $field => $value) {
+        foreach ($mapping as $field => $value) {
             $class->$field = $this->filterText($value);
         }
 
@@ -62,5 +63,27 @@ class Biltrader
         ];
 
         return $this->mapToModel($mapping, Classified::class);
+    }
+
+    public function getUser()
+    {
+        $contact = $this->crawler->filter('td > .normaltext')->eq(1)->text();
+        $explode = explode("\r\n", $contact);
+        array_shift($explode); // discard first item
+
+        $nameEnds = strpos($explode[0], '(');
+        $name = trim(substr($explode[0], 0, $nameEnds));
+        $phone = trim(substr($explode[0], $nameEnds, strlen($explode[0]) - $nameEnds));
+
+        $phone = str_replace('( 0', '', $phone);
+        $phone = str_replace(' )', '', $phone);
+
+        $names = explode(" ", $name);
+        $last_name = array_pop($names);
+        $first_name = join(" ", $names);
+
+        $email = trim(str_replace('Email:', '', $explode[1]));
+
+        return $this->mapToModel(compact('first_name', 'last_name', 'phone', 'email'), User::class);
     }
 }
