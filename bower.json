@@ -1,0 +1,23 @@
+{
+  "name": "bilkentilan",
+  "version": "0.0.0",
+  "homepage": "https://github.com/aozisik/bilkentilan",
+  "authors": [
+    "Ahmet Özışık <ozisikahmet@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-ujs": "~1.1.0",
+    "bootstrap": "~3.3.6",
+    "masonry": "~3.3.2"
+  }
+}
