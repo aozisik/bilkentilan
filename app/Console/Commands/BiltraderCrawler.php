@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Crawler\Biltrader;
+use App\User;
 use Illuminate\Console\Command;
-use Goutte\Client;
+use Exception;
+use Carbon\Carbon;
 
 class BiltraderCrawler extends Command
 {
@@ -47,6 +49,19 @@ class BiltraderCrawler extends Command
         }
     }
 
+    protected function getUser($eUser)
+    {
+        $user = User::where('email', $eUser->email)->first();
+
+        if (!$user) {
+            $this->info('Added user <'.$eUser->email.'>');
+            $eUser->save();
+            $user = $eUser;
+        }
+
+        return $user;
+    }
+
     public function crawl($id)
     {
         $url = 'http://goto.bilkent.edu.tr/trader/viewItem.jsp?itemId=' . $id;
@@ -54,5 +69,14 @@ class BiltraderCrawler extends Command
 
         $crawler = new Biltrader();
         $crawler->handle($url);
+
+        $user = $this->getUser($crawler->getUser());
+        $classified = $crawler->getClassified();
+
+        $classified->user_id = $user->id;
+        $classified->expires_at = Carbon::now()->addDays(30);
+        $classified->save();
+
+        $this->comment('Added Classified: "'.$classified->title.'"');
     }
 }
