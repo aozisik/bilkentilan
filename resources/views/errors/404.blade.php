@@ -40,7 +40,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">İlan Bulunamadı.</div>
+        <div class="title">Ilan Bulunamadı.</div>
         <p><a href="{{ url('/') }}">Ana Sayfa</a></p>
     </div>
 </div>
