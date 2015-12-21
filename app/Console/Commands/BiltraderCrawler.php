@@ -45,16 +45,24 @@ class BiltraderCrawler extends Command
         $end = $this->ask('Ending ID');
 
         for ($i = $start; $i <= $end; $i++) {
-            $this->crawl($i);
+            try {
+                $this->crawl($i);
+            } catch (Exception $e) {
+                $this->error($e->getMessage());
+            }
         }
     }
 
     protected function getUser($eUser)
     {
+        if( ! preg_match('/@bilkent.edu.tr|@ug.bilkent.edu.tr|@ee.bilkent.edu.tr|@cs.bilkent.edu.tr|@ie.bilkent.edu.tr|@fen.bilkent.edu.tr|@ctp.bilkent.edu.tr|@alumni.bilkent.edu.tr$/i', $eUser->email)) {
+            throw new Exception('Not a bilkent email');
+        }
+
         $user = User::where('email', $eUser->email)->first();
 
         if (!$user) {
-            $this->info('Added user <'.$eUser->email.'>');
+            $this->info('Added user <' . $eUser->email . '>');
             $eUser->save();
             $user = $eUser;
         }
@@ -78,6 +86,6 @@ class BiltraderCrawler extends Command
         $classified->is_imported = true;
         $classified->save();
 
-        $this->comment('Added Classified: "'.$classified->title.'"');
+        $this->comment('Added Classified: "' . $classified->title . '"');
     }
 }
