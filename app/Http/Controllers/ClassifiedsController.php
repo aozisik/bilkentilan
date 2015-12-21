@@ -76,15 +76,6 @@ class ClassifiedsController extends Controller
     public function show($id, Request $request)
     {
         $classified = Classified::findOrFail($id);
-
-        $cacheKey = 'visited_'.$id.'_'.$request->getClientIp();
-
-        if( ! Cache::has($cacheKey)) {
-            $classified->timestamps = false; // don't change updated at field
-            $classified->increment('visits');
-            Cache::put($cacheKey, 1, 1440); // for a full day
-        }
-
         return view('pages.classifieds.show')->with(compact('classified'));        
     }
 
