@@ -80,11 +80,10 @@ class ClassifiedsController extends Controller
         $cacheKey = 'visited_'.$id.'_'.$request->getClientIp();
 
         if( ! Cache::has($cacheKey)) {
-            $classified->visits++;
+            $classified->timestamps = false; // don't change updated at field
+            $classified->increment('visits');
             Cache::put($cacheKey, 1, 1440); // for a full day
         }
-
-        $classified->save();
 
         return view('pages.classifieds.show')->with(compact('classified'));        
     }
