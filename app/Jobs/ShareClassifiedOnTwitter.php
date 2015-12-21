@@ -5,7 +5,9 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Queue\SerializesModels;
+use App\Classified;
 use Twitter;
+
 
 class ShareClassifiedOnTwitter extends Job implements SelfHandling
 {
