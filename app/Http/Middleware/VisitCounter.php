@@ -59,6 +59,6 @@ class VisitCounter
 
     private function isOwnClassified($classified)
     {
-        return !Auth::check() || Auth::id() != $classified->user_id;
+        return Auth::check() && Auth::id() != $classified->user_id;
     }
 }
