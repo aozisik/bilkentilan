@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Cache, App\Classified;
+use Auth, Route, Cache, App\Classified;
 
 class VisitCounter
 {
@@ -18,19 +18,47 @@ class VisitCounter
     {
         $result = $next($request);
 
-        $id = $request->get('id');
-        $cacheKey = 'visited_' . $id . '_' . $request->getClientIp();
+        $parameters = Route::current()->parameters();
 
-        if (!Cache::has($cacheKey)) {
-            $classified = Classified::find($id);
-
-            if ($classified) {
-                $classified->timestamps = false; // don't change updated at field
-                $classified->increment('visits');
-                Cache::put($cacheKey, 1, 1440); // for a full day
-            }
+        if (!isset($parameters['id'])) {
+            return $result;
         }
 
+        $id = $parameters['id'];
+        $this->incrementClassifiedVisitCount($id, $request);
+
         return $result;
+    }
+
+    private function incrementClassifiedVisitCount($id, $request)
+    {
+        if (!$this->validateIncrement($id, $request)) {
+            return;
+        }
+
+        $classified = Classified::find($id);
+
+        if ($this->isOwnClassified($classified)) {
+            return;
+        }
+
+        $classified->timestamps = false;
+        $classified->increment('visits');
+        Cache::put($this->cacheKey($id, $request), 1, 1440); // for a full day
+    }
+
+    private function cacheKey($id, $request)
+    {
+        return 'visited_' . $id . '_' . (Auth::check() ? Auth::id() : $request->getClientIp());
+    }
+
+    private function validateIncrement($id, $request)
+    {
+        return !Cache::has($this->cacheKey($id, $request));
+    }
+
+    private function isOwnClassified($classified)
+    {
+        return !Auth::check() || Auth::id() != $classified->user_id;
     }
 }
