@@ -2,14 +2,18 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ShareClassifiedOnTwitter;
+use Illuminate\Console\Command;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+
 use App\Crawler\Biltrader;
 use App\User;
-use Illuminate\Console\Command;
 use Exception;
 use Carbon\Carbon;
 
 class BiltraderCrawler extends Command
 {
+    use DispatchesJobs;
     /**
      * The name and signature of the console command.
      *
@@ -87,5 +91,9 @@ class BiltraderCrawler extends Command
         $classified->save();
 
         $this->comment('Added Classified: "' . $classified->title . '"');
+
+        $shareJob = new ShareClassifiedOnTwitter($classified);
+        $shareJob->delay($classified->id + ($classified->id * 25 * 60));
+        $this->dispatch($shareJob);
     }
 }
