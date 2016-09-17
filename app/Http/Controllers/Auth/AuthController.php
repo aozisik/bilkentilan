@@ -35,18 +35,30 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    protected function getCredentials(Request $request) {
-        return $request->only($this->loginUsername(), 'password') + ['is_active' => 1];        
+    protected function getCredentials(Request $request)
+    {
+        return $request->only($this->loginUsername(), 'password') + ['is_active' => 1];
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
+        $bilkentDomains = [
+            '@bilkent.edu.tr',
+            '@ug.bilkent.edu.tr',
+            '@ee.bilkent.edu.tr',
+            '@cs.bilkent.edu.tr',
+            '@ie.bilkent.edu.tr',
+            '@fen.bilkent.edu.tr',
+            '@ctp.bilkent.edu.tr',
+            '@alumni.bilkent.edu.tr',
+        ];
+
         return Validator::make($data, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
@@ -55,7 +67,7 @@ class AuthController extends Controller
                 'email',
                 'max:255',
                 'unique:users',
-                'regex:/@bilkent.edu.tr|@ug.bilkent.edu.tr|@ee.bilkent.edu.tr|@cs.bilkent.edu.tr|@ie.bilkent.edu.tr|@fen.bilkent.edu.tr|@ctp.bilkent.edu.tr|@alumni.bilkent.edu.tr$/i',
+                'regex:/' . join('|', $bilkentDomains) . '$/i',
             ],
             'password' => 'required|confirmed|min:6',
         ]);
@@ -64,7 +76,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -73,10 +85,10 @@ class AuthController extends Controller
             'email',
             'first_name',
             'last_name',
-            'password',
             'newsletter'
         ]));
 
+        $user->password = bcrypt($data['password']);
         $user->activation_key = md5(uniqid());
         $user->is_active = 0;
         $user->save();
@@ -100,7 +112,8 @@ class AuthController extends Controller
         return redirect(url('/'))->withSuccess('Eposta adresinize bir aktivasyon postası gönderdik. Lütfen hem gelen kutunuzu hem de spam klasörünü kontrol edin.');
     }
 
-    public function getActivate($key) {
+    public function getActivate($key)
+    {
         //
         $user = User::where('activation_key', $key)->firstOrFail();
         $user->is_active = 1;
